@@ -28,6 +28,6 @@ public class Person implements Serializable {
 	String name;
 	LocalDate birthDate;
 	@Setter
-	@Embedded
+//	@Embedded
 	Address address;
 }
