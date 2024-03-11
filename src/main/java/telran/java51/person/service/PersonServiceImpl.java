@@ -57,7 +57,7 @@ public class PersonServiceImpl implements PersonService, CommandLineRunner {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<PersonDto> findPersonByCity(String city) {
+	public Iterable<PersonDto> findPersonByCity(String city) {
 			return personRepository.findByAddressCity(city)
 								.map(p ->  personCheck(p))
 								.collect(Collectors.toList());
@@ -77,7 +77,7 @@ public class PersonServiceImpl implements PersonService, CommandLineRunner {
 	@Override
 	@Transactional(readOnly = true)
 
-	public List<PersonDto> findPersonByAges(Integer from, Integer to) {
+	public Iterable<PersonDto> findPersonByAges(Integer from, Integer to) {
 		LocalDate fromL = LocalDate.now().minusYears(from.longValue());
 		LocalDate toL = LocalDate.now().minusYears(to.longValue());
 		return personRepository.findByBirthDateBetween(toL, fromL)
@@ -86,7 +86,7 @@ public class PersonServiceImpl implements PersonService, CommandLineRunner {
 	}
 	@Override
 	@Transactional(readOnly = true)
-	public List<PersonDto> findPersonByName(String name) {
+	public Iterable<PersonDto> findPersonByName(String name) {
 		return personRepository.findByNameIgnoreCase(name)
 				.map(p -> personCheck(p))
 				.toList();
@@ -119,12 +119,12 @@ public class PersonServiceImpl implements PersonService, CommandLineRunner {
 	}
 
 	@Override
-	public List<CityPopulationDto> getCityPopulation() {
+	public Iterable<CityPopulationDto> getCityPopulation() {
 		return personRepository.getCitiesPopulation();
 	}
 	
 	@Override
-	public List<ChildDto> findAllChildren() {
+	public Iterable<ChildDto> findAllChildren() {
 		return StreamSupport.stream(personRepository.findAll().spliterator(),false)
 							.filter(p->p instanceof Child child)
 							.map(ch-> modelMapper.map(ch, ChildDto.class))
@@ -132,7 +132,7 @@ public class PersonServiceImpl implements PersonService, CommandLineRunner {
 	}
 
 	@Override
-	public List<EmployeeDto> findEmployeesBySalary(int from, int to) {
+	public Iterable<EmployeeDto> findEmployeesBySalary(int from, int to) {
 		return StreamSupport.stream(personRepository.findAll().spliterator(),false)
 				.filter(p-> p instanceof Employee employee)
 				.map(e-> modelMapper.map(e, EmployeeDto.class))

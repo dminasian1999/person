@@ -13,21 +13,21 @@ public interface PersonService {
 
 	PersonDto findPersonById(Integer id);
 
-	List<PersonDto> findPersonByCity(String city);
+	Iterable<PersonDto> findPersonByCity(String city);
 
-	List<PersonDto> findPersonByAges(Integer from, Integer to);
+	Iterable<PersonDto> findPersonByAges(Integer from, Integer to);
 	
 	PersonDto updateName(Integer id, String name);
 	
-	List<PersonDto> findPersonByName(String name);
+	Iterable<PersonDto> findPersonByName(String name);
 	
 	PersonDto updateAddress(Integer id, AddressDto address);
 	
 	PersonDto deletePerson(Integer id);
 
-	List<CityPopulationDto> getCityPopulation();
+	Iterable<CityPopulationDto> getCityPopulation();
 	
-	List<ChildDto> findAllChildren();
+	Iterable<ChildDto> findAllChildren();
 
-	List<EmployeeDto> findEmployeesBySalary(int from, int to);
+	Iterable<EmployeeDto> findEmployeesBySalary(int from, int to);
 }

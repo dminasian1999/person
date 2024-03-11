@@ -37,12 +37,12 @@ public class PersonController {
 
 	@GetMapping("/city/{city}")
 	public List<PersonDto> findPersonByCity(@PathVariable String city) {
-		return personService.findPersonByCity(city);
+		return (List<PersonDto>) personService.findPersonByCity(city);
 	}
 
 	@GetMapping("/ages/{from}/{to}")
 	public List<PersonDto> findPersonByAges(@PathVariable Integer from, @PathVariable Integer to) {
-		return personService.findPersonByAges(from, to);
+		return (List<PersonDto>) personService.findPersonByAges(from, to);
 	}
 
 	@PutMapping("/{id}/name/{name}")
@@ -52,7 +52,7 @@ public class PersonController {
 
 	@GetMapping("/name/{name}")
 	public List<PersonDto> findPersonByName(@PathVariable String name) {
-		return personService.findPersonByName(name);
+		return (List<PersonDto>) personService.findPersonByName(name);
 	}
 
 	@PutMapping("/{id}/address")
@@ -67,16 +67,16 @@ public class PersonController {
 
 	@GetMapping("/population/city")
 	public List<CityPopulationDto> getCitiesPopulation() {
-		return personService.getCityPopulation();
+		return (List<CityPopulationDto>) personService.getCityPopulation();
 	}
 
 	@GetMapping("/children")
 	public List<ChildDto> findAllChildren() {
-		return personService.findAllChildren();
+		return (List<ChildDto>) personService.findAllChildren();
 	}
 	
 	@GetMapping("/salary/{from}/{to}")
 	public List<EmployeeDto> findEmployeesBySalary(@PathVariable Integer from, @PathVariable Integer to) {
-		return personService.findEmployeesBySalary(from,to);
+		return (List<EmployeeDto>) personService.findEmployeesBySalary(from,to);
 	}
 }
